@@ -1,7 +1,5 @@
 package db;
 
-import db.DbException;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -13,7 +11,7 @@ public class DB {
     public static Connection getConnection() {
         if (conn == null) {
             try {
-                Properties props = loadPropierties();
+                Properties props = loadProperties();
                 String url = props.getProperty("dburl");
                 conn = DriverManager.getConnection(url, props);
             } catch (SQLException e) {
@@ -33,7 +31,7 @@ public class DB {
         }
     }
 
-    private static Properties loadPropierties () {
+    private static Properties loadProperties() {
         try (FileInputStream fs = new FileInputStream("db.properties")) {
             Properties props = new Properties();
 
